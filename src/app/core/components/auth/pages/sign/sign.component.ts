@@ -9,9 +9,11 @@ import { AuthService } from 'src/app/core/services/auth.service'
 })
 export class SignComponent implements OnInit {
   public formAuth: FormGroup = this.formBuilder.group({
-    email: ['', Validators.required, Validators.email],
+    email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required]],
   })
+
+  public messageError!: string
 
   constructor(
     private formBuilder: FormBuilder,
@@ -22,7 +24,15 @@ export class SignComponent implements OnInit {
 
   public async submitForm() {
     if (this.formAuth.valid) {
-      console.log(this.formAuth)
+      this.authService
+        .sign({
+          email: this.formAuth.value.email,
+          password: this.formAuth.value.password,
+        })
+        .subscribe({
+          next: (res) => res,
+          error: (e) => (this.messageError = e),
+        })
     }
   }
 }

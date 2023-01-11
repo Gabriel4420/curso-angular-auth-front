@@ -19,7 +19,7 @@
       </svg>
       <input type="password" formControlName="password" placeholder="Senha" required />
     </label>
-    <button class="btn--red" [disabled]="formAuth.invalid">login</button>
+    <button type="button" class="btn--red" [disabled]="formAuth.invalid">login</button>
   </form>
-  <span class="alert--error">usuário ou senha incorreta</span>
+  <span *ngIf="messageError" class="alert--error">{{ messageError }}</span>
 </div>
