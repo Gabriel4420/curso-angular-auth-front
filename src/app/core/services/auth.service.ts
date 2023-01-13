@@ -15,7 +15,7 @@ export class AuthService {
     return this.http.post<{ token: string }>(`${this.url}/sign`, payload).pipe(
       map((data: any) => {
         localStorage.removeItem('access_token')
-        localStorage.setItem('access_token', JSON.stringify(data.token))
+        localStorage.setItem('access_token', data.token)
         return this.router.navigate(['admin'])
       }),
       catchError((error: any) => {
@@ -34,12 +34,7 @@ export class AuthService {
 
   public isAuthenticated(): boolean {
     const token = localStorage.getItem('access_token')
-
-    if (!token) {
-      return false
-    }
-    const jwtHelper = new JwtHelperService()
-
-    return !jwtHelper.isTokenExpired(token)
+    let jwtHelper;
+    return !token ? false : (jwtHelper = new JwtHelperService(),!jwtHelper.isTokenExpired(token) )
   }
 }

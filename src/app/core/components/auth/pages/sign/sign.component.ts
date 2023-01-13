@@ -23,7 +23,7 @@ export class SignComponent implements OnInit {
   ngOnInit(): void {}
 
   public async submitForm() {
-    if (this.formAuth.valid) {
+    this.formAuth.valid &&
       this.authService
         .sign({
           email: this.formAuth.value.email,
@@ -33,6 +33,5 @@ export class SignComponent implements OnInit {
           next: (res) => res,
           error: (e) => (this.messageError = e),
         })
-    }
   }
 }
