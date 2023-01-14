@@ -1,5 +1,5 @@
 <h1 align="center">
-  &#x1F4F1; Curso Angular Authenticator Frontend Prototype &#x1F4F1;
+ Curso Angular Authenticator Frontend Prototype 
 </h1>
 
 <div style="display:flex; justify-content:space-between;" align="center">
